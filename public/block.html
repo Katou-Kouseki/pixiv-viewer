@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You are blocked.</title>
+</head>
+
+<body>
+  <div style="text-align: center;">
+    <h2 style="padding-top: 50px;font-size: 20px;">抱歉，由于您打开了内容限制开关且 IP 位于中国大陆境内，本站暂不对您提供服务</h2>
+    <p style="margin-top: 10px;">
+      <a href="/">我不在中国大陆境内 点击返回首页</a>
+    </p>
+    <p style="margin-top: 10px;">
+      <a href="javascript:;" onclick="closeSwitch()">我想关掉内容限制开关并返回首页</a>
+    </p>
+    <img style="max-width: 80%;margin-top: 40px;" src="https://pic.rmb.bdstatic.com/bjh/events/c6f54b41ef6198f10d6dc06c1ce45e9a.png" alt="">
+  </div>
+  <script>
+    function closeSwitch() {
+      document.cookie = `nsfw=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; Secure`
+      localStorage.removeItem('PXV_CNT_SHOW')
+      location.replace('/')
+    }
+  </script>
+</body>
+
+</html>
