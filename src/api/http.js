@@ -3,7 +3,7 @@ import nprogress from 'nprogress'
 import { LocalStorage } from '@/utils/storage'
 
 export const BASE_API_URL = LocalStorage.get('HIBIAPI_BASE', process.env.VUE_APP_DEF_HIBIAPI_MAIN)
-export const notSelfHibiApi = !/hibi\d?\.cocomi\.cf|hibi3|mogenius\.io/.test(BASE_API_URL)
+export const notSelfHibiApi = !/hibi\d?\.cocomi\.cf/.test(BASE_API_URL)
 
 axios.defaults.baseURL = BASE_API_URL
 axios.defaults.timeout = 20000
