@@ -21,8 +21,6 @@ import store from './store'
 import { i18n } from './i18n'
 import { LocalStorage } from '@/utils/storage'
 
-init()
-
 setupApp()
 
 async function setupApp() {
@@ -64,6 +62,7 @@ async function setupApp() {
 
   if (process.env.NODE_ENV === 'production') {
     inject()
+    init()
   }
 }
 

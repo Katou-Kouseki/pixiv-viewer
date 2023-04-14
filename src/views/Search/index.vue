@@ -140,6 +140,7 @@ import dayjs from 'dayjs'
 import api from '@/api'
 import { notSelfHibiApi } from '@/api/http'
 import PopularPreview from './components/PopularPreview.vue'
+import { Dialog } from 'vant'
 
 export default {
   name: 'Search',
@@ -324,7 +325,7 @@ export default {
       this.$refs.selDate.scrollToDate(this.searchDateVals[0] || this.maxDate)
       // })
     },
-    search(keywords) {
+    async search(keywords) {
       keywords = keywords.trim()
       console.log('search keywords: ', keywords)
 
@@ -337,6 +338,17 @@ export default {
         // document.querySelector('.app-main')?.scrollTo(0, 0)
         return
       }
+
+      if (/安晴|安百璃|Ankii/i.test(keywords)) {
+        const res = await Dialog.confirm({
+          message: '是否前往用户「安百璃」页面',
+        }).catch(() => {})
+        if (res == 'confirm') {
+          this.$router.push('/users/53884643')
+          return
+        }
+      }
+
       this.$router.push(`/search/${keywords}`)
       this.showPopPreview = false
     },
@@ -426,8 +438,19 @@ export default {
     onFocus() {
       this.focus = true // 获取焦点
     },
-    onSearch() {
+    async onSearch() {
       console.log('onSearch: ', this.keywords)
+
+      if (/安晴|安百璃|Ankii/i.test(this.keywords)) {
+        const res = await Dialog.confirm({
+          message: '是否前往用户「安百璃」页面',
+        }).catch(() => {})
+        if (res == 'confirm') {
+          this.$router.push('/users/53884643')
+          return
+        }
+      }
+
       this.focus = false
       // document.querySelector('.app-main')?.scrollTo(0, 0)
       this.keywords += ' '
