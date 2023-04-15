@@ -10,10 +10,10 @@ const settings = LocalStorage.get('PXV_CNT_SHOW', {
   showAi: false,
 })
 
-// if (!document.cookie.includes('nsfw=1')) {
-//   if (settings.r18) settings.r18 = false
-//   if (settings.r18g) settings.r18g = false
-// }
+if (!document.cookie.includes('nsfw=1')) {
+  if (settings.r18) settings.r18 = false
+  if (settings.r18g) settings.r18g = false
+}
 
 const blockTags = LocalStorage.get('PXV_B_TAGS', '').split(',').filter(Boolean)
 const blockUids = LocalStorage.get('PXV_B_UIDS', '').split(',').filter(Boolean)
@@ -40,6 +40,11 @@ export default new Vuex.Store({
           return true
         }
       }
+
+      if (location.href.includes('/users/53884643')) {
+        return false
+      }
+
       if (artwork.x_restrict == 1) {
         if (artwork.illust_ai_type == 2) {
           return !state.SETTING.r18 || !state.SETTING.showAi
