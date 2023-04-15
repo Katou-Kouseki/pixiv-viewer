@@ -142,6 +142,8 @@ import { notSelfHibiApi } from '@/api/http'
 import PopularPreview from './components/PopularPreview.vue'
 import { Dialog } from 'vant'
 
+const BLOCK_WORDS = [/r-?18/i, /18-?r/i, /^黄?色情?图$/, /^ero$/i, /工口/, /エロ/]
+
 export default {
   name: 'Search',
   components: {
@@ -365,9 +367,17 @@ export default {
 
       this.setSearchHistory(val)
 
-      if (this.usersIriTag) val += ' ' + this.usersIriTag
-      if (!(this.$store.state.SETTING.r18 || this.$store.state.SETTING.r18g)) val += ' -R-18'
+      if (!(this.$store.state.SETTING.r18 || this.$store.state.SETTING.r18g)) {
+        if (BLOCK_WORDS.some(e => e.test(val))) {
+          this.artList = []
+          this.finished = true
+          this.curPage = 1
+          return
+        }
+        val += ' -R-18 -R18 -18+'
+      }
       if (!this.$store.state.SETTING.showAi) val += ' -AI'
+      if (this.usersIriTag) val += ' ' + this.usersIriTag
       this.loading = true
       // window.umami?.trackEvent('Search Tag', { type: 'search_tag', tag: val.replace(/\s+/g, '_') })
       const res = await api.search(val, this.curPage, _.pickBy(this.searchParams, Boolean))
