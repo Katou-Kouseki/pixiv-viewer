@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
   <title>Question</title>
 </head>
 
@@ -28,10 +29,10 @@
         q('#q_img').src = el.q
         ans = el.a
       })
-      q('#sub_btn').onclick = function() {
+      q('#sub_btn').onclick = function () {
         if (q('#ans').value == ans) {
           alert('回答正确')
-          localStorage.removeItem('PXV_NSFW_ON')
+          localStorage.setItem('PXV_NSFW_ON', '{"data":0,"expires":-1}')
           location.replace('/')
         } else {
           alert('回答错误')

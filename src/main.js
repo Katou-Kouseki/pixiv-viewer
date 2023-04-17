@@ -90,8 +90,13 @@ async function checkIncognito() {
 }
 
 async function checkSetting() {
+  const setting = LocalStorage.get('PXV_CNT_SHOW', {})
+  const isOn = () => LocalStorage.get('PXV_NSFW_ON', null)
+  if (isOn() == null && (setting.r18 || setting.r18g)) {
+    LocalStorage.set('PXV_NSFW_ON', 1)
+  }
   try {
-    if (!LocalStorage.get('PXV_NSFW_ON')) return true
+    if (!isOn()) return true
     const resp = await fetch('/ip_test')
     if (!resp.url.includes('/block.html')) return true
     document.documentElement.innerHTML = ''
