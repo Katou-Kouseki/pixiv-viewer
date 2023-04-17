@@ -25,7 +25,6 @@
         return resp.json()
       }).then(function (arr) {
         const el = arr[parseInt(Math.random() * arr.length, 10)]
-        console.log('el: ', el)
         q('#q_img').src = el.Picture
         ans = el.Formula
       })
