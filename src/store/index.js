@@ -10,10 +10,10 @@ const settings = LocalStorage.get('PXV_CNT_SHOW', {
   showAi: false,
 })
 
-if (!document.cookie.includes('nsfw=1')) {
-  if (settings.r18) settings.r18 = false
-  if (settings.r18g) settings.r18g = false
-}
+// if (!document.cookie.includes('nsfw=1')) {
+//   if (settings.r18) settings.r18 = false
+//   if (settings.r18g) settings.r18g = false
+// }
 
 const blockTags = LocalStorage.get('PXV_B_TAGS', '').split(',').filter(Boolean)
 const blockUids = LocalStorage.get('PXV_B_UIDS', '').split(',').filter(Boolean)

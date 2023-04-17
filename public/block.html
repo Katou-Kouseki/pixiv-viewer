@@ -10,18 +10,41 @@
 
 <body>
   <div style="text-align: center;">
-    <h2 style="padding-top: 50px;font-size: 20px;">抱歉，由于您打开了内容限制开关且 IP 位于中国大陆境内，本站暂不对您提供服务</h2>
+    <h2 style="padding-top: 50px;font-size: 20px;">H 是不行的！</h2>
     <p style="margin-top: 10px;">
-      <a href="/">我不在中国大陆境内 点击返回首页</a>
+      <a href="/">不，我有魔法，我就要色色！</a>
     </p>
     <p style="margin-top: 10px;">
-      <a href="javascript:;" onclick="closeSwitch()">我想关掉内容限制开关并返回首页</a>
+      <a href="javascript:;" onclick="closeSwitch()">贤者时间到来，我不色色了</a>
     </p>
-    <img style="max-width: 80%;margin-top: 40px;" src="https://pic.rmb.bdstatic.com/bjh/events/c6f54b41ef6198f10d6dc06c1ce45e9a.png" alt="">
+    <p style="margin-top: 10px;">
+      <a href="javascript:;" onclick="goTest()">不妨来做道题，做对了就可以色色</a>
+    </p>
+    <img id="a_img" style="max-width: 80%;margin-top: 10px;" src="" alt="">
   </div>
   <script>
+    window.onload = function() {
+      const images = [
+        'https://upload-bbs.miyoushe.com/upload/2023/04/17/190122060/b8b72d059259260cabe9b6194373ee84_3762224610399620263.jpg',
+        'https://upload-bbs.miyoushe.com/upload/2023/04/17/190122060/48f7d2c8cea7baa79e23df489f346c7e_8303701417762292474.jpg',
+        'https://upload-bbs.miyoushe.com/upload/2023/04/17/190122060/00a00ef7cfa967d6514de3ebb4192f7d_5335898414897151377.jpg',
+        'https://upload-bbs.miyoushe.com/upload/2023/04/17/190122060/6b47cbc7b94ab5fbcf75f2775fd1994e_4667366826840422642.jpg',
+        'https://upload-bbs.miyoushe.com/upload/2023/04/17/190122060/dd1c3acc354a56ae5bd0d0c3e7c37ca4_3022946843102995377.gif',
+        'https://upload-bbs.miyoushe.com/upload/2023/04/17/190122060/6d336bcef5e1954b86eb74d8cdc155cc_382507230837734102.jpg',
+        'https://upload-bbs.miyoushe.com/upload/2023/04/17/190122060/eabf2a913a63f153721337e96857eb96_4351715884259466311.jpg'
+      ]
+      document.querySelector('#a_img').src = randomEl(images)
+    }
+    function randomEl(arr) {
+      return arr[parseInt(Math.random() * arr.length, 10)]
+    }
+    function goTest() {
+      const urls = ['./test/math.html', './test/pubchem.html']
+      location.href = randomEl(urls)
+    }
     function closeSwitch() {
-      document.cookie = `nsfw=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; Secure`
+      // document.cookie = `nsfw=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; Secure`
+      localStorage.removeItem('PXV_NSFW_ON')
       localStorage.removeItem('PXV_CNT_SHOW')
       location.replace('/')
     }

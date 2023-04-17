@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { resetCookieOnce, setCookieOnce } from '@/utils'
+// import { resetCookieOnce, setCookieOnce } from '@/utils'
 import { LocalStorage } from '@/utils/storage'
 import { Dialog } from 'vant'
 import { mapState, mapActions } from 'vuex'
@@ -125,16 +125,18 @@ export default {
               // window.umami?.(`set_r18g_switch_${checked}`)
             }
             this.saveSwitchValues()
-            !this.isPics && setCookieOnce('nsfw', '1')
+            // !this.isPics && setCookieOnce('nsfw', '1')
+            !this.isPics && LocalStorage.set('PXV_NSFW_ON', 1)
             type === 1 && setTimeout(() => {
               location.reload()
-            }, 500)
+            }, 200)
           })
           .catch(() => {
             console.log('操作取消')
           })
       } else {
-        !this.isPics && resetCookieOnce('nsfw')
+        // !this.isPics && resetCookieOnce('nsfw')
+        !this.isPics && LocalStorage.remove('PXV_NSFW_ON')
         if (type === 1) this.currentSETTING.r18 = checked
         if (type === 2) this.currentSETTING.r18g = checked
         this.saveSwitchValues()
