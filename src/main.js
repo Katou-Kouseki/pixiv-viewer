@@ -8,7 +8,7 @@ import './registerServiceWorker'
 import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import VueMasonry from 'vue-masonry-css'
-import Vant, { Toast, Lazyload, ImagePreview, Dialog } from 'vant'
+import Vant, { Toast, Lazyload, ImagePreview/* , Dialog */ } from 'vant'
 import { inject } from '@vercel/analytics'
 import { init } from 'console-ban'
 
@@ -25,7 +25,7 @@ setupApp()
 
 async function setupApp() {
   await checkWechat()
-  await checkIncognito()
+  // await checkIncognito()
   await checkSetting()
 
   Vue.use(Toast)
@@ -74,20 +74,20 @@ async function checkWechat() {
   return true
 }
 
-async function checkIncognito() {
-  try {
-    const { quota } = await navigator.storage.estimate()
-    if (quota.toString().length > 10) return true
-    document.body.innerHTML = ''
-    Dialog.alert({
-      message: 'Please use a normal tab to continue browsing.',
-      confirmButtonText: 'OK',
-    })
-    throw new Error('BLOCKED.')
-  } catch (error) {
-    return true
-  }
-}
+// async function checkIncognito() {
+//   try {
+//     const { quota } = await navigator.storage.estimate()
+//     if (quota.toString().length > 10) return true
+//     document.body.innerHTML = ''
+//     Dialog.alert({
+//       message: 'Please use a normal tab to continue browsing.',
+//       confirmButtonText: 'OK',
+//     })
+//     throw new Error('BLOCKED.')
+//   } catch (error) {
+//     return true
+//   }
+// }
 
 async function checkSetting() {
   const setting = LocalStorage.get('PXV_CNT_SHOW', {})
