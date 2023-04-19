@@ -30,6 +30,13 @@
     />
     <van-cell
       center
+      title="Pixiv Artvier (未发布)"
+      is-link
+      label="A third-party app for pixiv. 一个第三方pixiv App。还在开发中..."
+      @click="openLink('https://github.com/yleencc/pixiv-artvier')"
+    />
+    <van-cell
+      center
       title="Flexbooru (Android)"
       is-link
       label="A booru client for Android, support Danbooru, Moebooru, Gelbooru, Shimmie, etc."
