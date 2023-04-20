@@ -237,6 +237,7 @@ export default {
       }
     },
     onShareSel(_, index) {
+      window.umami?.track('share_novel', { data: { type: shareOptions[index]?.name } })
       const actions = [
         async () => {
           const shareData = {
@@ -298,6 +299,7 @@ export default {
     },
     downloadNovel() {
       FileSaver.saveAs(new Blob([this.novelText.text]), `${this.artwork.id}_${this.artwork.title}.txt`)
+      window.umami?.track('download_novel')
     },
     goYoudaoFanyi() {
       if (/Mobile/i.test(navigator.userAgent)) {

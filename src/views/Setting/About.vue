@@ -2,7 +2,7 @@
   <div class="setting-page">
     <top-bar id="top-bar-wrap" />
     <h3 class="af_title">{{ $t('about.title') }}</h3>
-    <van-cell center :title="$t('about.version')" clickable label="v1.8.5-bk.2" />
+    <van-cell center :title="$t('about.version')" clickable label="v1.8.5-bk.3" />
     <van-cell center :title="$t('about.disclaimer')" is-link :label="$t('tips.click_view')" @click="showDisclaimer" />
     <van-cell
       center
@@ -68,7 +68,7 @@ export default {
       copyText('537247472', () => this.$toast('已复制'))
     },
     openLink(link) {
-      // window.umami?.(`open_link_${link.replace('https://', '')}`)
+      window.umami?.track('open_link', { data: { link: link.replace('https://', '') } })
       window.open(link, '_blank', 'noopener noreferrer')
     },
     showDisclaimer() {
@@ -77,7 +77,7 @@ export default {
         message: this.$t('about.disclaimer_text'),
         confirmButtonText: this.$t('common.confirm'),
       })
-      // window.umami?.(`show_disclaimer`)
+      window.umami?.track('show_disclaimer')
     },
   },
 }

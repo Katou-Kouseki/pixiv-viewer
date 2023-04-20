@@ -29,6 +29,9 @@
   <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/5.4.5/css/swiper.min.css">
   <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-webfont/1.6.0/style.css">
   <script src="<%= BASE_URL %>static/js/flexible.min.js"></script>
+  <% if (process.env.NODE_ENV === 'production') { %>
+  <script async src="https://um.nanoka.top/script.js" data-website-id="6eacf5b9-7db8-482f-b7ba-ff51d4dc38ce"></script>
+  <% } %>
 </head>
 
 <body>
@@ -42,9 +45,9 @@
   </div>
   <script>if(!!localStorage.PXV_DARK)document.body.classList.add('dark');</script>
   <% if (process.env.NODE_ENV === 'production') { %>
-    <% for (let it of htmlWebpackPlugin.options.cdn.js) { %>
-      <script src="<%= it %>"></script>
-    <% } %>
+  <% for (let it of htmlWebpackPlugin.options.cdn.js) { %>
+  <script src="<%= it %>"></script>
+  <% } %>
   <% } %>
   <!-- built files will be auto injected -->
 </body>

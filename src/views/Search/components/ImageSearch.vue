@@ -1,6 +1,6 @@
 <template>
   <div class="image-search">
-    <van-uploader class="umami--click--image_search open-dialog" :before-read="beforeRead" :after-read="afterRead" :disabled="loading">
+    <van-uploader class="open-dialog" data-umami-event="image_search" :before-read="beforeRead" :after-read="afterRead" :disabled="loading">
       <Icon v-show="!loading&&!file" name="image" />
       <div v-show="loading" class="loading"></div>
     </van-uploader>

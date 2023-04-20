@@ -91,7 +91,7 @@ export default {
     onAIChange(checked) {
       this.$set(this.currentSETTING, 'showAi', checked)
       this.saveSwitchValues()
-      // window.umami?.(`set_ai_switch_${checked}`)
+      window.umami?.track(`set_ai_switch_${checked}`)
     },
     onR18Change(checked, type) {
       let name
@@ -110,7 +110,7 @@ export default {
           .then(() => {
             if (type === 1) {
               this.currentSETTING.r18 = checked
-              // window.umami?.(`set_r18_switch_${checked}`)
+              window.umami?.track(`set_r18_switch_${checked}`)
             }
             if (type === 2) {
               this.currentSETTING.r18g = checked
@@ -122,7 +122,7 @@ export default {
                   location.reload()
                 })
               }, 200)
-              // window.umami?.(`set_r18g_switch_${checked}`)
+              window.umami?.track(`set_r18g_switch_${checked}`)
             }
             this.saveSwitchValues()
             // !this.isPics && setCookieOnce('nsfw', '1')

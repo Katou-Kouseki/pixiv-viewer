@@ -9,7 +9,6 @@ import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import VueMasonry from 'vue-masonry-css'
 import Vant, { Toast, Lazyload, ImagePreview/* , Dialog */ } from 'vant'
-import { inject } from '@vercel/analytics'
 import { init } from 'console-ban'
 
 import SvgIcon from '@/icons'
@@ -61,7 +60,6 @@ async function setupApp() {
   }).$mount('#app')
 
   if (process.env.NODE_ENV === 'production') {
-    inject()
     init()
   }
 }
@@ -97,8 +95,8 @@ async function checkSetting() {
   }
   try {
     if (!isOn()) return true
-    const resp = await fetch('/ip_test')
-    if (!resp.url.includes('/block.html')) return true
+    // const resp = await fetch('/ip_test')
+    // if (!resp.url.includes('/block.html')) return true
     document.documentElement.innerHTML = ''
     location.replace('/block.html')
     throw new Error('BLOCKED.')

@@ -153,6 +153,7 @@ export default {
     date(val, old) {
       if (val !== old) {
         this.init()
+        window.umami?.track('change_rank_date', { data: { val: val?.toLocaleDateString() } })
       }
     },
   },

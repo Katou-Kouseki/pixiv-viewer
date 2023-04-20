@@ -37,7 +37,7 @@
         v-if="isNovel"
         target="_blank"
         rel="noreferrer"
-        class="umami--click--click_pixiv_link"
+        data-umami-event="click_pixiv_link"
         :href="'https://www.pixiv.net/novel/show.php?id=' + artwork.id"
       >
         https://pixiv.net/n/{{ artwork.id }}
@@ -46,7 +46,7 @@
         v-else
         target="_blank"
         rel="noreferrer"
-        class="umami--click--click_pixiv_link"
+        data-umami-event="click_pixiv_link"
         :href="'https://www.pixiv.net/artworks/' + artwork.id"
       >
         https://pixiv.net/i/{{ artwork.id }}
@@ -219,6 +219,7 @@ export default {
       })
     },
     toggleBookmark() {
+      window.umami?.track('toggle_bookmark')
       this.favLoading = true
       if (this.bookmarkId) {
         removeBookmark(this.bookmarkId).then(({ error }) => {
@@ -301,6 +302,7 @@ export default {
         this.$emit('ugoira-download')
         return
       }
+      window.umami?.track('download_artwork')
       this.$toast(this.$t('tips.download_wait'))
       for (let index = 0; index < this.artwork.images.length; index++) {
         const item = this.artwork.images[index]

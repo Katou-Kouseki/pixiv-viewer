@@ -1,7 +1,7 @@
 <template>
   <div class="setting-page">
     <top-bar id="top-bar-wrap" />
-    <h3 class="af_title" @dblclick="showApSelect = !showApSelect">{{ $t('setting.other.title') }}</h3>
+    <h3 class="af_title" @dblclick="onTitleDblclick">{{ $t('setting.other.title') }}</h3>
     <van-cell center :title="$t('setting.other.lang')" is-link :label="lang.value" @click="lang.show = true" />
     <van-cell center :title="$t('setting.dark.title')" :label="$t('setting.lab.title')">
       <template #right-icon>
@@ -178,6 +178,7 @@ export default {
   },
   methods: {
     async changePximgBed() {
+      window.umami?.track('set_pximg', { data: { val: this.pximgBed.value } })
       LocalStorage.set('PXIMG_PROXY', this.pximgBed.value)
       SessionStorage.clear()
       await localDb.clear()
@@ -187,6 +188,7 @@ export default {
     },
     async changePximgBed_({ _value }) {
       this.pximgBed_.value = _value
+      window.umami?.track('change_pximg', { data: { val: _value } })
       LocalStorage.set('PXIMG_PROXY', _value)
       SessionStorage.clear()
       await localDb.clear()
@@ -195,6 +197,7 @@ export default {
       }, 500)
     },
     async changeHibiapi() {
+      window.umami?.track('set_hibiapi', { data: { val: this.hibiapi.value } })
       LocalStorage.set('HIBIAPI_BASE', this.hibiapi.value)
       SessionStorage.clear()
       await localDb.clear()
@@ -204,6 +207,7 @@ export default {
     },
     async changeHibiapi_({ _value }) {
       this.hibiapi_.value = _value
+      window.umami?.track('change_hibiapi', { data: { val: _value } })
       LocalStorage.set('HIBIAPI_BASE', _value)
       SessionStorage.clear()
       await localDb.clear()
@@ -213,6 +217,7 @@ export default {
     },
     changeWfType({ name }) {
       this.wfType.value = name
+      window.umami?.track('set_wf_type', { data: { val: name } })
       LocalStorage.set('PXV_WF_TYPE', name)
       setTimeout(() => {
         location.reload()
@@ -220,12 +225,14 @@ export default {
     },
     changeImgRes({ name }) {
       this.imgRes.value = name
+      window.umami?.track('set_img_res', { data: { val: name } })
       LocalStorage.set('PXV_DTL_IMG_RES', name)
       setTimeout(() => {
         location.reload()
       }, 500)
     },
     onDarkChange(val) {
+      window.umami?.track(`set_dark_${val}`)
       this.isDark = val
       this.$nextTick(() => {
         localStorage.setItem('PXV_DARK', val || '')
@@ -237,10 +244,15 @@ export default {
     changeLang({ name }) {
       this.lang.value = name
       i18n.locale = name
+      window.umami?.track('set_lang', { data: { val: name } })
       localStorage.setItem('PXV_LANG', name)
       setTimeout(() => {
         location.reload()
       }, 500)
+    },
+    onTitleDblclick() {
+      this.showApSelect = !this.showApSelect
+      window.umami?.track('show_ap_select')
     },
     async checkApiAvailable() {
       const ck = 'setting.apiChk'

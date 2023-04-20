@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     openLink(link) {
-      // window.umami?.(`open_link_${link.replace('https://', '')}`)
+      window.umami?.track('open_link', { data: { link: link.replace('https://', '') } })
       window.open(link, '_blank', 'noopener')
     },
   },

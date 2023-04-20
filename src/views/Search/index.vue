@@ -379,7 +379,6 @@ export default {
       if (!this.$store.state.SETTING.showAi) val += ' -AI'
       if (this.usersIriTag) val += ' ' + this.usersIriTag
       this.loading = true
-      // window.umami?.trackEvent('Search Tag', { type: 'search_tag', tag: val.replace(/\s+/g, '_') })
       const res = await api.search(val, this.curPage, _.pickBy(this.searchParams, Boolean))
       if (res.status === 0) {
         if (res.data.length) {
