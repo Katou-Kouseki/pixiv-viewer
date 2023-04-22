@@ -340,7 +340,7 @@ export default {
       gif.render()
     },
     download(type) {
-      window.umami?.track('download_ugoira', { data: { type } })
+      window.umami?.track('download_ugoira', { dl_type: type })
       switch (type) {
         case 'ZIP':
           this.downloadZIP()

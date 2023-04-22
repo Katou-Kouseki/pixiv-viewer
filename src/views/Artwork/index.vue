@@ -184,7 +184,7 @@ export default {
       this.$refs.imgView.download(item.name)
     },
     onShareSel(_, index) {
-      window.umami?.track('share', { data: { type: shareOptions[index]?.name } })
+      window.umami?.track('share', { share_type: shareOptions[index]?.name })
       const shareUrl = `https://pixiv.pics/i/${this.artwork.id}`
       let imageUrl = this.artwork.images[0].l.replace(/\/c\/\d+x\d+(_\d+)?\//g, '/')
       if (imageUrl.includes('i-cf.pximg.net')) imageUrl = imageUrl.replace('i-cf.pximg.net', 'i.pixiv.re')

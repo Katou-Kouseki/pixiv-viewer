@@ -178,7 +178,7 @@ export default {
   },
   methods: {
     async changePximgBed() {
-      window.umami?.track('set_pximg', { data: { val: this.pximgBed.value } })
+      window.umami?.track('set_pximg', { set_pximg: this.pximgBed.value })
       LocalStorage.set('PXIMG_PROXY', this.pximgBed.value)
       SessionStorage.clear()
       await localDb.clear()
@@ -188,7 +188,7 @@ export default {
     },
     async changePximgBed_({ _value }) {
       this.pximgBed_.value = _value
-      window.umami?.track('change_pximg', { data: { val: _value } })
+      window.umami?.track('change_pximg', { change_pximg: _value })
       LocalStorage.set('PXIMG_PROXY', _value)
       SessionStorage.clear()
       await localDb.clear()
@@ -197,7 +197,7 @@ export default {
       }, 500)
     },
     async changeHibiapi() {
-      window.umami?.track('set_hibiapi', { data: { val: this.hibiapi.value } })
+      window.umami?.track('set_hibiapi', { set_hibiapi: this.hibiapi.value })
       LocalStorage.set('HIBIAPI_BASE', this.hibiapi.value)
       SessionStorage.clear()
       await localDb.clear()
@@ -207,7 +207,7 @@ export default {
     },
     async changeHibiapi_({ _value }) {
       this.hibiapi_.value = _value
-      window.umami?.track('change_hibiapi', { data: { val: _value } })
+      window.umami?.track('change_hibiapi', { change_hibiapi: _value })
       LocalStorage.set('HIBIAPI_BASE', _value)
       SessionStorage.clear()
       await localDb.clear()
@@ -217,7 +217,7 @@ export default {
     },
     changeWfType({ name }) {
       this.wfType.value = name
-      window.umami?.track('set_wf_type', { data: { val: name } })
+      window.umami?.track('set_wf_type', { wf_type: name })
       LocalStorage.set('PXV_WF_TYPE', name)
       setTimeout(() => {
         location.reload()
@@ -225,7 +225,7 @@ export default {
     },
     changeImgRes({ name }) {
       this.imgRes.value = name
-      window.umami?.track('set_img_res', { data: { val: name } })
+      window.umami?.track('set_img_res', { img_res: name })
       LocalStorage.set('PXV_DTL_IMG_RES', name)
       setTimeout(() => {
         location.reload()
@@ -244,7 +244,7 @@ export default {
     changeLang({ name }) {
       this.lang.value = name
       i18n.locale = name
-      window.umami?.track('set_lang', { data: { val: name } })
+      window.umami?.track('set_lang', { lang: name })
       localStorage.setItem('PXV_LANG', name)
       setTimeout(() => {
         location.reload()

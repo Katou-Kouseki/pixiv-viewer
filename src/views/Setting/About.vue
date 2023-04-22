@@ -68,7 +68,7 @@ export default {
       copyText('537247472', () => this.$toast('已复制'))
     },
     openLink(link) {
-      window.umami?.track('open_link', { data: { link: link.replace('https://', '') } })
+      window.umami?.track('open_link', { link: link.replace('https://', '') })
       window.open(link, '_blank', 'noopener noreferrer')
     },
     showDisclaimer() {

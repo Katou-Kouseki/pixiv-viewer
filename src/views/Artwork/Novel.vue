@@ -237,7 +237,7 @@ export default {
       }
     },
     onShareSel(_, index) {
-      window.umami?.track('share_novel', { data: { type: shareOptions[index]?.name } })
+      window.umami?.track('share_novel', { share_type: shareOptions[index]?.name })
       const actions = [
         async () => {
           const shareData = {
