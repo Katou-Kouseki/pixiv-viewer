@@ -72,7 +72,7 @@
     />
     <van-cell
       center
-      title="flutter_dmzj (Android,iOS,Linux,macOS,Windows)"
+      title="动漫之家X (Android,iOS,Linux,macOS,Windows)"
       is-link
       label="动漫之家 Flutter 客户端。"
       @click="openLink('https://github.com/xiaoyaocz/flutter_dmzj')"
