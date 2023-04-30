@@ -74,11 +74,6 @@ async function checkWechat() {
 }
 
 async function checkBrowser() {
-  Dialog.alert({
-    width: '10rem',
-    message: '<b style="font-size:.36rem">Pixiv 源站目前无法连接，请等待官方修复<b><br><img style="width:100%" src="https://upload-bbs.miyoushe.com/upload/2023/04/30/190122060/4b1f9f1ff58e76354f27b49f4864df93_7573079909252890752.png" alt>',
-    confirmButtonText: '我知道了',
-  })
   if (/UCBrowser|Huawei|HeyTap|Miui|Vivo|Oppo|360se|Sogou/i.test(navigator.userAgent)) {
     Notify({
       message: '请尽量使用最新的 Chrome/Edge 浏览器访问本站',
