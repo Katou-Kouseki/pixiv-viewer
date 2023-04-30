@@ -63,6 +63,9 @@ export default {
     getUserList: _.throttle(async function () {
       const { word } = this.$route.params
       if (!word) return
+      if (/スカラマシュ|散兵|放浪者|流浪者/i.test(word)) {
+        return
+      }
       this.loading = true
       this.userList = []
       const res = await api.searchUser(word)

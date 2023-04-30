@@ -365,6 +365,13 @@ export default {
       }
       console.log(`doSearch: ${val}`)
 
+      if (/スカラマシュ|散兵|スカ蛍|スカ空|スカナヒ|散荧|荧散|散空|空散|枫散|散枫|草散|散草|放浪者(原神)|流浪者(原神)|阿散|阿帽/i.test(val)) {
+        this.artList = []
+        this.finished = true
+        this.curPage = 1
+        return
+      }
+
       this.setSearchHistory(val)
 
       if (!(this.$store.state.SETTING.r18 || this.$store.state.SETTING.r18g)) {
@@ -400,9 +407,9 @@ export default {
           artList = artList.filter(e => {
             return !(
               e.like < 5 ||
-              /恋童|ペド|幼女/.test(JSON.stringify(e.tags)) ||
-              /恋童|幼女|进群|加好友|度盘/.test(e.title) ||
-              /恋童|幼女|进群|加好友|度盘/.test(e.caption)
+              /恋童|ペド|幼女|スカラマシュ|散兵/.test(JSON.stringify(e.tags)) ||
+              /恋童|幼女|进群|加好友|度盘|スカラマシュ|散兵/.test(e.title) ||
+              /恋童|幼女|进群|加好友|度盘|スカラマシュ|散兵/.test(e.caption)
             )
           })
 
@@ -437,6 +444,9 @@ export default {
       const id = this.lastWord.match(/https?:\/\/.+\/artworks\/(\d+)/i)?.[1]
       if (id) {
         this.toPidPage(id)
+        return
+      }
+      if (/スカラマシュ|散|(^\d+$)/i.test(this.lastWord)) {
         return
       }
       const res = await api.getTagsAutocomplete(this.lastWord)

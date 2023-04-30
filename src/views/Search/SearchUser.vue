@@ -45,6 +45,9 @@ export default {
   methods: {
     onSearch() {
       const word = this.keywords.trim()
+      if (/スカラマシュ|散兵|放浪者|流浪者/i.test(word)) {
+        return
+      }
       if (!word) return
       this.$router.push(`/search_user/${word}`)
       this.keywords = ''
