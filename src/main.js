@@ -68,24 +68,22 @@ async function setupApp() {
 async function checkWechat() {
   if (/MicroMessenger/i.test(navigator.userAgent)) {
     document.body.innerHTML = '<h1 style="margin:10px">FUCK WECHAT</h1>'
+    Dialog.alert({
+      message: '请使用 Chrome/Edge 浏览器访问本站',
+      theme: 'round-button',
+    })
     throw new Error('BLOCKED.')
   }
   return true
 }
 
 async function checkBrowser() {
-  if (/UCBrowser|Huawei|HeyTap|Miui|Vivo|Oppo|360se|Sogou/i.test(navigator.userAgent)) {
+  if (/Quark|QQBrowser|baidu|NewsArticle|UCBrowser|Huawei|HeyTap|Miui|Vivo|Oppo|360se|Sogou/i.test(navigator.userAgent)) {
     Notify({
       message: '请尽量使用最新的 Chrome/Edge 浏览器访问本站',
       color: '#fff',
       background: '#f1c25f',
       duration: 2500,
-    })
-  }
-  if (/Quark|QQBrowser|baidu|NewsArticle/i.test(navigator.userAgent)) {
-    Dialog.alert({
-      message: '请<b>尽量</b>使用最新的 Chrome/Edge 浏览器访问本站',
-      confirmButtonText: '我知道了',
     })
   }
   return true
@@ -109,8 +107,8 @@ async function checkIncognito() {
 }
 
 async function checkSetting() {
-  const chromeVer = parseInt(navigator.userAgent.match(/Chrome\/([\d.]+)/)?.[1])
-  if (chromeVer && chromeVer > 111) return true
+  // const chromeVer = parseInt(navigator.userAgent.match(/Chrome\/([\d.]+)/)?.[1])
+  // if (chromeVer && chromeVer > 111) return true
   let flag = false
   const setting = LocalStorage.get('PXV_CNT_SHOW', {})
   const isOn = () => LocalStorage.get('PXV_NSFW_ON', null)
