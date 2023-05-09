@@ -50,7 +50,7 @@ export default {
       swiperOption: {
         freeMode: true,
         slidesPerView: 'auto',
-        // mousewheel: true,
+        mousewheel: true,
         scrollbar: {
           el: '.swiper-scrollbar',
           draggable: true,

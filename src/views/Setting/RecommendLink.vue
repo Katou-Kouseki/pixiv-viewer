@@ -98,13 +98,6 @@
       label="https://www.nanoka.top/illust/pixiv/"
       @click="openLink('https://www.nanoka.top/illust/pixiv/')"
     />
-    <van-cell
-      center
-      title="PixAI"
-      is-link
-      label="https://pixai.art"
-      @click="openLink('https://pixai.art/?sort=daily-ranking')"
-    />
   </div>
 </template>
 

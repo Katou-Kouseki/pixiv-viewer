@@ -145,9 +145,10 @@ export default {
 
       .icon {
         display: block;
-        font-size: 58px;
+        font-size: 50px;
         margin: 0 auto;
         margin-top: 0.1rem;
+        margin-bottom 3px
         color: #fffdf7;
 
         &.active {

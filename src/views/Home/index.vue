@@ -6,13 +6,18 @@
       <div v-t="'common.novel'" class="com_sel_tab" @click="$router.replace('/home_novel')"></div>
     </div>
     <div class="home-i">
-      <RankCard />
-      <SpotlightCard />
+      <div class="rec-cards">
+        <RankCard />
+        <SpotlightCard />
+      </div>
       <template v-if="isLogin">
         <Recomm4U />
       </template>
       <template v-else>
-        <RecommendCard v-if="isSelfHibi" />
+        <div v-if="isSelfHibi" class="rec-cards">
+          <DiscoveryCard />
+          <RecommendIllustCard />
+        </div>
         <lazy-component>
           <RandomIllust />
         </lazy-component>
@@ -27,7 +32,8 @@
 <script>
 import RankCard from './components/RankCard.vue'
 import SpotlightCard from '../Spotlights/SpotlightCard.vue'
-import RecommendCard from '../Discovery/RecommendCard.vue'
+import DiscoveryCard from '../Discovery/DiscoveryCard.vue'
+import RecommendIllustCard from '../Discovery/RecommendIllustCard.vue'
 import RandomIllust from './components/RandomIllust.vue'
 import LatestIllustCard from '../Discovery/LatestIllustCard.vue'
 import Recomm4U from './components/Recomm4U.vue'
@@ -40,9 +46,10 @@ export default {
   name: 'HomeIllust',
   components: {
     RankCard,
-    RandomIllust,
-    RecommendCard,
     SpotlightCard,
+    DiscoveryCard,
+    RecommendIllustCard,
+    RandomIllust,
     LatestIllustCard,
     Recomm4U,
   },
@@ -55,6 +62,22 @@ export default {
 }
 </script>
 
+<style lang="stylus">
+.rec-cards
+  display flex
+
+  .rank-card
+    flex 1
+    width 48%
+
+@media screen and (max-width: 767px)
+  .rec-cards
+    display block
+
+    .rank-card
+      width auto
+
+</style>
 <style lang="stylus" scoped>
 .home-i
   position relative
