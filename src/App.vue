@@ -66,7 +66,7 @@ html,body
   .Home,
   .search .tags,
   .search .result-list,
-  .rank,
+  .rank-list,
   .users,
   #app .Spotlights,
   #app .Discovery,
