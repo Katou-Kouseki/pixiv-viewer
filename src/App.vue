@@ -67,10 +67,12 @@ html,body
   .search .tags,
   .search .result-list,
   .rank-list,
-  .users,
+  .users .user-tabs,
+  .user-illusts,
   #app .Spotlights,
   #app .Discovery,
-  #app .HomeRecommIllust
+  #app .HomeRecommIllust,
+  #app .related
     padding-left 5vw
     padding-right 5vw
 
@@ -78,7 +80,7 @@ html,body
     .nav-container
       left unset
       right 0
-      bottom 60px
+      bottom 42px
       width 1.2rem
       height auto
       transform: translateX(100%);
@@ -88,12 +90,15 @@ html,body
       flex-direction: column
       justify-content: center
       align-items: center
+      padding-top 15px
       border-top-left-radius: 0.21333rem;
       border-top-right-radius: 0;
       border-bottom-left-radius: 0.21333rem;
       li
         width 100%
-        margin-bottom 30px
+        margin-bottom 25px
+        &.nav_to_top
+          display list-item
         .icon
           font-size 0.72rem
         span
