@@ -67,7 +67,7 @@ html,body
   .search .tags,
   .search .result-list,
   .rank-list,
-  .users .user-tabs,
+  .users .user-tabs .van-tab__pane,
   .user-illusts,
   #app .Spotlights,
   #app .Discovery,
