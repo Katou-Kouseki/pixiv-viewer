@@ -12,11 +12,11 @@
         <van-switch active-color="#ff3f3f" :value="currentSETTING.r18g" size="24" @input="onR18Change($event, 2)" />
       </template>
     </van-cell>
-    <van-cell center :title="$t('display.ai')" :label="$t('display.ai_label')">
+    <!-- <van-cell center :title="$t('display.ai')" :label="$t('display.ai_label')">
       <template #right-icon>
-        <van-switch active-color="#536cb8" :value="currentSETTING.showAi" size="24" @input="onAIChange($event)" />
+        <van-switch active-color="#536cb8" :value="currentSETTING.ai" size="24" @input="onAIChange($event)" />
       </template>
-    </van-cell>
+    </van-cell> -->
     <van-field
       v-model="blockTags"
       rows="2"
@@ -59,7 +59,7 @@ export default {
       currentSETTING: {
         r18: false,
         r18g: false,
-        showAi: false,
+        ai: false,
       },
       isPics: location.hostname == 'pixiv.pics',
     }
@@ -89,7 +89,7 @@ export default {
       }, 100)
     },
     onAIChange(checked) {
-      this.$set(this.currentSETTING, 'showAi', checked)
+      this.$set(this.currentSETTING, 'ai', checked)
       this.saveSwitchValues()
       window.umami?.track(`set_ai_switch_${checked}`)
     },

@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const settings = LocalStorage.get('PXV_CNT_SHOW', {
   r18: false,
   r18g: false,
-  showAi: false,
+  ai: false,
 })
 
 // if (!document.cookie.includes('nsfw=1')) {
@@ -50,18 +50,18 @@ export default new Vuex.Store({
 
       if (artwork.x_restrict == 1) {
         if (artwork.illust_ai_type == 2) {
-          return !state.SETTING.r18 || !state.SETTING.showAi
+          return !state.SETTING.r18 || !state.SETTING.ai
         }
         return !state.SETTING.r18
       }
       if (artwork.x_restrict == 2) {
         if (artwork.illust_ai_type == 2) {
-          return !state.SETTING.r18g || !state.SETTING.showAi
+          return !state.SETTING.r18g || !state.SETTING.ai
         }
         return !state.SETTING.r18g
       }
       if (artwork.illust_ai_type == 2) {
-        return !state.SETTING.showAi
+        return !state.SETTING.ai
       }
       return false
     },
