@@ -15,8 +15,8 @@ const settings = LocalStorage.get('PXV_CNT_SHOW', {
 //   if (settings.r18g) settings.r18g = false
 // }
 
-const blockTags = LocalStorage.get('PXV_B_TAGS', '').split(',').filter(Boolean)
-const blockUids = LocalStorage.get('PXV_B_UIDS', '').split(',').filter(Boolean)
+export const blockTags = LocalStorage.get('PXV_B_TAGS', '').split(',').filter(Boolean)
+export const blockUids = LocalStorage.get('PXV_B_UIDS', '').split(',').filter(Boolean)
 
 export default new Vuex.Store({
   state: {
@@ -39,13 +39,6 @@ export default new Vuex.Store({
         if (blockTags.some(e => tags.includes(e))) {
           return true
         }
-      }
-
-      if (location.href.includes('/users/53884643')) {
-        return false
-      }
-      if (artwork?.author?.id == 53884643) {
-        return false
       }
 
       if (artwork.x_restrict == 1) {

@@ -12,11 +12,11 @@
         <van-switch active-color="#ff3f3f" :value="currentSETTING.r18g" size="24" @input="onR18Change($event, 2)" />
       </template>
     </van-cell>
-    <!-- <van-cell center :title="$t('display.ai')" :label="$t('display.ai_label')">
+    <van-cell center :title="$t('display.ai')" :label="$t('display.ai_label')" @click="alertAI">
       <template #right-icon>
-        <van-switch active-color="#536cb8" :value="currentSETTING.ai" size="24" @input="onAIChange($event)" />
+        <van-switch disabled active-color="#536cb8" :value="currentSETTING.ai" size="24" @input="onAIChange($event)" />
       </template>
-    </van-cell> -->
+    </van-cell>
     <van-field
       v-model="blockTags"
       rows="2"
@@ -92,6 +92,12 @@ export default {
       this.$set(this.currentSETTING, 'ai', checked)
       this.saveSwitchValues()
       window.umami?.track(`set_ai_switch_${checked}`)
+    },
+    alertAI() {
+      Dialog.alert({
+        title: '提示',
+        message: '鉴于 AI 生成滥用问题的严重性，本站暂不支持打开此开关。详见<a href="https://www.pixiv.net/info.php?id=9557" rel="noreferrer">此页</a>',
+      })
     },
     onR18Change(checked, type) {
       let name

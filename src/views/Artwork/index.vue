@@ -20,7 +20,7 @@
     </div>
     <van-divider style="margin: 0.7rem 0;" />
     <keep-alive>
-      <Related :key="artwork.id" :artwork="artwork" />
+      <Related v-if="artwork.x_restrict < 1" :key="artwork.id" :artwork="artwork" />
     </keep-alive>
     <van-action-sheet
       v-model="ugoiraDownloadPanelShow"
