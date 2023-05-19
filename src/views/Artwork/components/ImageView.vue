@@ -354,6 +354,10 @@ export default {
           this.downloadWebM()
           break
 
+        case 'MP4':
+          window.open(`https://ugoira.com/i/${this.artwork.id}`, '_blank', 'noopener')
+          break
+
         default:
           break
       }
