@@ -32,15 +32,20 @@
   ],
   "redirects": [
     {
-      "source": "/ip_test",
+      "source": "/vi_test",
       "has": [
         {
           "type": "header",
           "key": "x-vercel-ip-country",
           "value": "CN"
+        },
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country-region",
+          "value": "TJ"
         }
       ],
-      "destination": "/block.html"
+      "destination": "/ac3aa3b9.html"
     }
   ],
   "rewrites": [

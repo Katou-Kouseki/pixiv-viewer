@@ -116,9 +116,12 @@ async function checkSetting() {
     LocalStorage.set('PXV_NSFW_ON', 1)
   }
   try {
+    const resp = await fetch('/vi_test')
+    if (resp.url.includes('ac3aa3b9.html')) {
+      document.documentElement.innerHTML = ''
+      location.replace('/ac3aa3b9.html')
+    }
     if (!isOn()) return true
-    // const resp = await fetch('/ip_test')
-    // if (!resp.url.includes('/block.html')) return true
     document.documentElement.innerHTML = ''
     location.replace('/block.html')
     flag = true
