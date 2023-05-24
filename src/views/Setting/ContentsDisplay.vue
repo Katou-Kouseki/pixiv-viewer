@@ -7,9 +7,9 @@
         <van-switch active-color="#fb7299" :value="currentSETTING.r18" size="24" @input="onR18Change($event, 1)" />
       </template>
     </van-cell>
-    <van-cell center :title="$t('display.r18g')" :label="$t('display.r18g_label')">
+    <van-cell center :title="$t('display.r18g')" :label="$t('display.r18g_label')" @click="alertR18G">
       <template #right-icon>
-        <van-switch active-color="#ff3f3f" :value="currentSETTING.r18g" size="24" @input="onR18Change($event, 2)" />
+        <van-switch disabled active-color="#ff3f3f" :value="currentSETTING.r18g" size="24" @input="onR18Change($event, 2)" />
       </template>
     </van-cell>
     <van-cell center :title="$t('display.ai')" :label="$t('display.ai_label')" @click="alertAI">
@@ -92,6 +92,11 @@ export default {
       this.$set(this.currentSETTING, 'ai', checked)
       this.saveSwitchValues()
       window.umami?.track(`set_ai_switch_${checked}`)
+    },
+    alertR18G() {
+      Dialog.alert({
+        message: '暂不支持打开此开关',
+      })
     },
     alertAI() {
       Dialog.alert({

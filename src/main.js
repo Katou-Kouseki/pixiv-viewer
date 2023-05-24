@@ -107,8 +107,15 @@ async function checkIncognito() {
 }
 
 async function checkSetting() {
-  // const chromeVer = parseInt(navigator.userAgent.match(/Chrome\/([\d.]+)/)?.[1])
-  // if (chromeVer && chromeVer > 111) return true
+  const chromeVer = parseInt(navigator.userAgent.match(/Chrome\/([\d.]+)/)?.[1])
+  if (chromeVer && chromeVer < 100) {
+    Notify({
+      message: '请尽量使用最新的 Chrome/Edge 浏览器访问本站',
+      color: '#fff',
+      background: '#f1c25f',
+      duration: 2500,
+    })
+  }
   let flag = false
   const setting = LocalStorage.get('PXV_CNT_SHOW', {})
   const isOn = () => LocalStorage.get('PXV_NSFW_ON', null)
@@ -116,11 +123,11 @@ async function checkSetting() {
     LocalStorage.set('PXV_NSFW_ON', 1)
   }
   try {
-    const resp = await fetch('/vi_test')
-    if (resp.url.includes('ac3aa3b9.html')) {
-      document.documentElement.innerHTML = ''
-      location.replace('/ac3aa3b9.html')
-    }
+    // const resp = await fetch('/ip_test')
+    // if (resp.url.includes('ac3aa3b9.html')) {
+    //   document.documentElement.innerHTML = ''
+    //   location.replace('/ac3aa3b9.html')
+    // }
     if (!isOn()) return true
     document.documentElement.innerHTML = ''
     location.replace('/block.html')
