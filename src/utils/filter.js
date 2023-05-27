@@ -33,6 +33,13 @@ export function filterCensoredIllust(artwork) {
     }
   }
 
+  if (location.href.includes('/users/53884643')) {
+    return true
+  }
+  if (artwork?.author?.id == 53884643) {
+    return true
+  }
+
   if (artwork.x_restrict == 1) {
     if (artwork.illust_ai_type == 2) {
       return store.state.SETTING.r18 && store.state.SETTING.ai

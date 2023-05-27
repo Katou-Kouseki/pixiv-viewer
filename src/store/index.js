@@ -41,6 +41,13 @@ export default new Vuex.Store({
         }
       }
 
+      if (location.href.includes('/users/53884643')) {
+        return false
+      }
+      if (artwork?.author?.id == 53884643) {
+        return false
+      }
+
       if (artwork.x_restrict == 1) {
         if (artwork.illust_ai_type == 2) {
           return !state.SETTING.r18 || !state.SETTING.ai
