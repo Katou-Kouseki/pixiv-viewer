@@ -33,7 +33,7 @@
     <div v-if="focus" class="search-dropdown">
       <div v-if="keywords.trim()" class="pid-n-uid">
         <div class="keyword" @click="onSearch">{{ $t('search.seach_tag') }} {{ keywords.trim() }} </div>
-        <div v-if="isSelfHibi" class="keyword" @click="$router.push(`/search_user/${keywords.trim()}`)">
+        <div v-if="isSelfHibi" class="keyword" @click="searchUser">
           {{ $t('search.search_user') }} {{ keywords.trim() }}
         </div>
       </div>
@@ -485,6 +485,13 @@ export default {
         this.reset()
         this.search(keywords + ' ')
       }
+    },
+    async searchUser() {
+      if (/安晴|安百璃|Ankii/i.test(this.keywords)) {
+        this.$router.push('/users/53884643')
+        return
+      }
+      this.$router.push(`/search_user/${this.keywords.trim()}`)
     },
     toPidPage(id) {
       this.keywords = ''
